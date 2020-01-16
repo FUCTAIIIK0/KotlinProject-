@@ -3,6 +3,7 @@ package ru.skillbranch.devintensive
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.kotlininencive.extensions.format
 import java.util.*
 
 /**
@@ -17,7 +18,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun testInstance() {
+    fun test_Instance() {
         val user1 = User("1")
         val user2 = User("2", "Jon", "Wick")
         val user3 = User(
@@ -31,7 +32,7 @@ class ExampleUnitTest {
     }
 
     @Test
-    fun testFactory() {
+    fun test_Factory() {
         val user1 = User.Factory.makeUser("Ayrton Senna")
 //        val user2 = User.makeUser("John Wick")
 //        val user3 = User.makeUser("Duke Nukem")
@@ -44,6 +45,7 @@ class ExampleUnitTest {
     @Test
     fun test_decomposition() {
         val user = User.makeUser("John Osterman")
+
         fun getUserInfo() = user
         val (id, firstName, lastName) = getUserInfo()
 
@@ -68,6 +70,28 @@ class ExampleUnitTest {
         } else {
             println(" not equals links\n ${user.hashCode()}\n $user\n ${user2.hashCode()}\n $user2\n")
         }
+
+        println(
+            """
+            
+        """.trimIndent()
+        )
+
+    }
+
+    @Test
+    fun test_formatdate() {
+        val user1 = User.makeUser("Ayrton Senna")
+        val user2 = user1.copy(id = "1", firstname = "John", lastname = "Wick", lastVisit = Date())
+        val user3 = user2.copy(id = "2", firstname = "Edward", isOnline = true)
+        println(
+            """
+            ${user1.lastVisit?.format()}
+            ${user2.lastVisit?.format()}
+            ${user3.lastVisit?.format()}
+        """.trimIndent()
+        )
+
 
     }
 }

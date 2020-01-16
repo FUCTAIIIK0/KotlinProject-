@@ -29,10 +29,10 @@ data class User(
     init {
         introBit = getIntro()
 
-        println(
-            "Hello ${if (lastname == "Wick") "His name is $firstname $lastname \n${introBit}"
-            else "And his name is $firstname $lastname!!!\n\n"}"
-        )
+//        println(
+//            "Hello ${if (lastname == "Wick") "His name is $firstname $lastname \n${introBit}"
+//            else "And his name is $firstname $lastname!!!\n\n"}"
+//        )
     }
 
 
