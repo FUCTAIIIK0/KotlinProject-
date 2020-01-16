@@ -15,16 +15,17 @@ fun Date.format(pattern: String = "HH:mm:ss dd.MM.yy"): String {
     return dateformat.format(this)
 }
 
-fun Date.add(value: Int, units: String): Date {
+fun Date.add(value: Int, units: TimeUnits = TimeUnits.SECOND): Date {
     var time = this.time
 
     time += when (units) {
-        "second", "seconds" -> value * SECOND
-        "minute", "minutes" -> value * MINUTE
-        "hour", "hours" -> value * HOUR
-        "day", "days" -> value * DAY
-        else -> throw IllegalStateException("invalid unit")
+        TimeUnits.SECOND -> value * SECOND
+        TimeUnits.MINUTE -> value * MINUTE
+        TimeUnits.HOUR -> value * HOUR
+        TimeUnits.DAY -> value * DAY
     }
     this.time = time
     return this
 }
+
+

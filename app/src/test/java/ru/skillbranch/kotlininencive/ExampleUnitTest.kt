@@ -3,6 +3,7 @@ package ru.skillbranch.devintensive
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.kotlininencive.extensions.TimeUnits
 import ru.skillbranch.kotlininencive.extensions.add
 import ru.skillbranch.kotlininencive.extensions.format
 import java.util.*
@@ -90,12 +91,12 @@ class ExampleUnitTest {
             id = "1",
             firstname = "John",
             lastname = "Wick",
-            lastVisit = Date().add(-2, "seconds")
+            lastVisit = Date().add(-2, TimeUnits.MINUTE)
         )
         val user4 = user3.copy(
             id = "2",
             firstname = "Edward",
-            lastVisit = Date().add(+2, "hours"),
+            lastVisit = Date().add(+2, TimeUnits.HOUR),
             isOnline = true
         )
 
@@ -108,6 +109,22 @@ class ExampleUnitTest {
         """.trimIndent()
         )
 
+
+    }
+
+    @Test
+    fun test_user_toUserView() {
+        val user = User.makeUser("Jhon Doy")
+        val user1 = user.copy(lastVisit = Date(), isOnline = false)
+        val date: Date? = user1.lastVisit
+
+    }
+
+    @Test
+    fun test_Date_humanizeDiff() {
+        val user = User.makeUser("Jhon Doy")
+        val user1 = user.copy(lastVisit = Date(), isOnline = false)
+        val date: Date? = user1.lastVisit
 
     }
 }
