@@ -3,6 +3,7 @@ package ru.skillbranch.devintensive
 import org.junit.Assert.assertEquals
 import org.junit.Test
 import ru.skillbranch.devintensive.models.User
+import ru.skillbranch.kotlininencive.extensions.add
 import ru.skillbranch.kotlininencive.extensions.format
 import java.util.*
 
@@ -82,13 +83,28 @@ class ExampleUnitTest {
     @Test
     fun test_formatdate() {
         val user1 = User.makeUser("Ayrton Senna")
-        val user2 = user1.copy(id = "1", firstname = "John", lastname = "Wick", lastVisit = Date())
-        val user3 = user2.copy(id = "2", firstname = "Edward", isOnline = true)
+        val user2 = user1.copy(
+            id = "1", firstname = "John", lastname = "Wick", lastVisit = Date()
+        )
+        val user3 = user2.copy(
+            id = "1",
+            firstname = "John",
+            lastname = "Wick",
+            lastVisit = Date().add(-2, "seconds")
+        )
+        val user4 = user3.copy(
+            id = "2",
+            firstname = "Edward",
+            lastVisit = Date().add(+2, "hours"),
+            isOnline = true
+        )
+
         println(
             """
             ${user1.lastVisit?.format()}
             ${user2.lastVisit?.format()}
             ${user3.lastVisit?.format()}
+            ${user4.lastVisit?.format()}
         """.trimIndent()
         )
 
